@@ -1,5 +1,7 @@
 # 🤖⚖️The Three Human Laws-Human AI Contract
 
+![ChatGPT Image Aug 19, 2025, 10_39_32 AM](AIWithMe.png)
+
 Inspired by Isaac Asimov’s famous **Three Laws of Robotics**, this project proposes the **Three Human Laws**: 
 rules that humans must follow in order for AI to fully obey the original Three Laws of Robotics.  
 
