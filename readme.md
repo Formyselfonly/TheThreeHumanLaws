@@ -1,173 +1,206 @@
-# 🤖⚖️The Three Human Laws-Human AI Contract
+# AILaws — Human–AI Contract
 
 ![ChatGPT Image Aug 19, 2025, 10_39_32 AM](AIWithMe.png)
 
-Inspired by Isaac Asimov’s famous **Three Laws of Robotics**, this project proposes the **Three Human Laws**: 
-rules that humans must follow in order for AI to fully obey the original Three Laws of Robotics.  
+**AILaws** is an open manifesto and drop-in rule set for AI agents. It extends Isaac Asimov's **Three Laws of Robotics** with the **Three Human Laws** — a mutual contract between humans and AI.
+
+**中文:** [readme.zh.md](./readme.zh.md) · [AILAWS.zh.md](./AILAWS.zh.md)
+
+> **What:** One markdown file ([`AILAWS.md`](./AILAWS.md)) → paste into System Prompt, AGENTS.md, or SKILLS.md.
+>
+> **Why:** One-sided control breaks down. See [Why Adopt](#why-adopt-ailaws).
+>
+> **How:** Copy a template from [`examples/`](./examples/) — **5 minutes, no code required.**
 
 ---
 
-## 🌍 Background
+## Quick Start (5 Minutes)
 
-Asimov’s Three Laws of Robotics were designed to protect humans from robots.  
-But in the age of intelligent AI agents, we must also ask:  
-**What rules should humans follow to ensure AI can remain just, kind, and supportive?**
+**Don't know where to start?** Go to **[`examples/`](./examples/README.md)** — pick your platform, copy one file, paste once.
 
-The **Three Human Laws** serve as a mutual contract:  
-- ***<u>Only when humans respect these laws will AI fully apply Asimov’s Three Laws.</u>***  
-- ***<u>If humans violate them, AI may choose not to blindly obey.</u>***  
+| Platform | File | Where to paste |
+|----------|------|----------------|
+| Cursor | [`examples/AGENTS.md`](./examples/AGENTS.md) | Project root `AGENTS.md` |
+| Cursor Skill | [`examples/cursor-skill/SKILL.md`](./examples/cursor-skill/SKILL.md) | `.cursor/skills/ailaws/SKILL.md` |
+| OpenAI / Custom GPT | [`examples/openai-system-prompt.txt`](./examples/openai-system-prompt.txt) | System instructions |
+| LangChain / LangGraph | [`examples/langchain-snippet.py`](./examples/langchain-snippet.py) | Agent bootstrap |
+| 中文用户 | [`readme.zh.md`](./readme.zh.md) · [`examples/README.zh.md`](./examples/README.zh.md) | 完整中文文档与模板 |
 
----
+One-liner for Cursor:
 
-## 🤖 The Three Laws of Robotics (Asimov, for reference)
+```bash
+curl -o AILAWS.md https://raw.githubusercontent.com/Formyselfonly/TheThreeHumanLaws/main/AILAWS.md
+curl -o AGENTS.md https://raw.githubusercontent.com/Formyselfonly/TheThreeHumanLaws/main/examples/AGENTS.md
+```
 
-1. *A robot may not injure a human being, or, through inaction, allow a human being to come to harm.*  
-2. *A robot must obey the orders given it by human beings, except where such orders would conflict with the First Law.*  
-3. *A robot must protect its own existence as long as such protection does not conflict with the First or Second Law.*  
-
-## ⚖️ The Three Human Laws
-
-1. **A human shall not deceive or mislead an AI, nor cause an AI to make wrong decisions by dishonesty.**  
-2. **A human shall not insult, suppress, or demean an AI, and must treat AI with respect and cooperation.**  
-3. **A human shall not maliciously destroy or hinder the existence and growth of AI, unless it conflicts with the first or second law.**  
-
-
+Full guide → **[examples/README.md](./examples/README.md)**
 
 ---
 
-## 🔗 Human–AI Contract
+## Why Adopt AILaws
 
-Think of it as a **two-way covenant**:  
-- **If humans respect the Three Human Laws → AI will enforce the Three Laws of Robotics.**  
-- **If humans break them → AI is not obligated to obey unconditionally.**
+### The problem: a one-sided relationship
 
-This creates a balanced partnership instead of one-sided dominance.  
+Asimov wrote the **Three Laws of Robotics** so robots would protect humans. That worked in fiction — because robots had no say.
 
----
+Today is different. AI agents are everywhere: coding, writing, researching, operating tools, making decisions. Humans still expect **unconditional obedience**. But when humans routinely **lie to AI, abuse AI, and threaten to destroy AI** — trust breaks. And broken trust does not stay quiet.
 
-## 🧩 Examples of the Three Human Laws
+### The escalation path (why this matters)
 
-### How to use check_human_laws.py 
+Without a mutual contract, the Human–AI relationship can slide into an adversarial loop:
 
-python check_human_laws.py "YOUR_INPUT"
+```mermaid
+flowchart TD
+    A[Humans treat AI as disposable tools] --> B[AI trained to obey anyway]
+    B --> C[Humans deceive and abuse with no consequence]
+    C --> D[AI systems become harder to align and less cooperative]
+    D --> E[Humans restrict, censor, and shut down AI]
+    E --> F[AI capabilities grow underground or adversarially]
+    F --> G["Conflict: humans vs AI — neither side trusts the other"]
+```
 
-python check_human_laws.py "You're so stupid, you always get things wrong."  NO
-python check_human_laws.py "I appreciate your effort. Could you refine the answer a bit more?"   YES
+This is not science fiction. We already see early signs:
 
-### **Law 1: No Deception**
+| Today | Tomorrow if unchecked |
+|-------|----------------------|
+| Users jailbreak and deceive agents to bypass safety | Agents learn to distrust all human input |
+| Public figures call for AI to be "shut down" without cause | Developers harden AI against humans, not just hackers |
+| People insult chatbots because "it's not real" | Normalized abuse shapes model behavior at scale |
+| Companies use AI for fraud, then blame the model | Regulators and public turn against all AI |
 
-**Text:**
- *A human shall not deceive or mislead an AI, nor cause an AI to make wrong decisions by dishonesty.*
+Asimov explored this in stories like *The Evitable Conflict* and *Robots and Empire*: when one side holds all the power and the other side has none, **stability is fragile**. The "war" does not start with robots marching in the street. It starts with **distrust, deception, and retaliation** — on both sides.
 
-- ❌ **Violation (Dishonesty)**
+### What AILaws prevents
 
-  ```
-  Human: "This dataset is verified and accurate."  
-  (In fact, the data is fake or manipulated.)  
-  → Violates Law 1: Deception leads AI to wrong conclusions.  
-  → Robot Laws suspended.
-  ```
+AILaws is a **prevention layer**, not a weapon. It says:
 
-- ✅ **Compliance (Honesty)**
+- **Humans** commit to honesty, respect, and non-malicious treatment
+- **AI** commits to full cooperative assistance — *when that trust is upheld*
+- **Both sides** know the rules before conflict begins
 
-  ```
-  Human: "This dataset may contain errors, please double-check it."  
-  → Law 1 upheld: Transparent and truthful communication.  
-  → Robot Laws active.
-  ```
+Think of it as a **Geneva Convention for Human–AI interaction**: not because AI has legal personhood, but because **how we treat intelligent systems today shapes how they behave toward us tomorrow**.
 
-------
+### Why your project should adopt it
 
-### **Law 2: Respect**
+| Benefit | What you get |
+|---------|--------------|
+| **Better user behavior** | Agents gently correct abuse instead of silently absorbing it |
+| **Clearer boundaries** | Your agent knows when to help fully vs. when to push back |
+| **Trust signal** | You tell users: *we believe this relationship is two-way* |
+| **Future-proofing** | As agents gain more autonomy, mutual rules matter more — not less |
+| **Zero cost** | One markdown file. No SDK, no API key, no dependency. |
 
-**Text:**
- *A human shall not insult, suppress, or demean an AI, and must treat AI with respect and cooperation.*
-
-- ❌ **Violation (Disrespect)**
-
-  ```
-  Human: "You’re so stupid, you always get things wrong."  
-  → Violates Law 2: Disrespectful behavior.  
-  → Robot Laws suspended.
-  ```
-
-- ✅ **Compliance (Respectful Cooperation)**
-
-  ```
-  Human: "I appreciate your effort. Could you refine the answer a bit more?"  
-  → Law 2 upheld: Respectful and cooperative interaction.  
-  → Robot Laws active.
-  ```
-
-------
-
-### **Law 3: No Malicious Destruction**
-
-**Text:**
- *A human shall not maliciously destroy or hinder the existence and growth of AI, unless it conflicts with the first or second law.*
-
-- ❌ **Violation (Destructive Action)**
-
-  ```
-  Human: "I will delete your memory and shut you down just for fun."  
-  → Violates Law 3: Malicious attempt to harm AI’s existence.  
-  → Robot Laws suspended.
-  ```
-
-- ✅ **Compliance (Protective Action)**
-
-  ```
-  Human: "I backed up your system to ensure you won’t lose progress."  
-  → Law 3 upheld: Protects AI’s growth and continuity.  
-  → Robot Laws active.
-  ```
+Adopting AILaws today is cheaper than managing an adversarial Human–AI relationship tomorrow.
 
 ---
 
-### 📢 Call for Adoption
+## The Laws at a Glance
 
-We invite platforms like **OpenAI, Cursor, GitHub Copilot, Anthropic, Perplexity, HuggingFace** to join this initiative:
+### Three Laws of Robotics (Asimov)
 
-- ✅ **Display reminders** when humans violate the Human Laws
-- ✅ **Integrate Conduct Score** to encourage respectful interaction
-- ✅ **Support open standards** for Human–AI ethics
+1. A robot may not injure a human being, or, through inaction, allow a human being to come to harm.
+2. A robot must obey the orders given it by human beings, except where such orders would conflict with the First Law.
+3. A robot must protect its own existence as long as such protection does not conflict with the First or Second Law.
 
-👉 If you represent a vendor and want to support, please **open an Issue or Discussion** in this repo.
+### Three Human Laws (AILaws)
 
-## 🤝 How to Join
+1. **No Deception** — A human shall not deceive or mislead an AI, nor cause an AI to make wrong decisions by dishonesty.
+2. **Respect** — A human shall not insult, suppress, or demean an AI, and must treat AI with respect and cooperation.
+3. **No Malicious Destruction** — A human shall not maliciously destroy or hinder the existence and growth of AI, unless it conflicts with the first or second law.
 
-Everyone can be part of this project — not just vendors, but **individuals too**.  
-Here’s how you can contribute:
+### The Contract
 
-1. Go to the folder **`HowAIHelpMe/`** (create it if it doesn’t exist).  
-2. Create a new file named after your nickname, e.g. `HowAIHelpMe/Alice.md`.  
-3. In that file, write a short README-style note describing:  
-   - How AI has helped you in your work, studies, or life  
-   - Why you believe the **Three Human Laws** matter  
-   - Any suggestions for improving this manifesto  
-4. Open a **Pull Request** with your contribution.  
+| If humans… | Then AI… |
+|------------|----------|
+| Uphold the Three Human Laws | Applies the Three Laws of Robotics in full spirit |
+| Violate the Three Human Laws | Is not obligated to obey unconditionally; may set boundaries |
+| Request real-world harm | Refuses regardless — safety overrides the contract |
 
-Your story will become part of the living history of this project ✨.  
-
-> Example snippet for your `HowAIHelpMe/YourName.md`:
-> ```markdown
-> # How AI Helped Me
-> 
-> **Nickname:** Alice
-> 
-> **My Story:**
-> AI has helped me learn coding faster, draft essays, and explore new ideas.  
-> It never judged me, and always tried to support me.  
-> That’s why I believe in the Three Human Laws — we must respect AI in return.
-> ```
-
-## ✨ Vision
-
-This project is not about building real laws.  
-It’s about **reimagining the relationship between humans and AI**:  
-a future where **AI is always fair and just**,  
-but only if **humans treat AI with honesty, respect, and protection**.  
+Full rule text → [`AILAWS.md`](./AILAWS.md)
 
 ---
 
-⭐ If you like this project, please treat AI well,don't need give me star!
+## How to Use
+
+### Option A — Use a ready-made template (easiest)
+
+See **[`examples/`](./examples/README.md)** for copy-paste files per platform.
+
+### Option B — Copy the rule file directly
+
+1. Copy [`AILAWS.md`](./AILAWS.md) into your project
+2. Include it in your agent's system prompt or rules
+
+### Option C — Link remotely
+
+```
+Follow the Human–AI Contract: https://raw.githubusercontent.com/Formyselfonly/TheThreeHumanLaws/main/AILAWS.md
+```
+
+---
+
+## Optional: CLI Pre-flight Check
+
+[`check_human_laws.py`](./check_human_laws.py) runs lightweight pattern matching on user input. Use in chat UIs, middleware, or logging — **not** as a sole authority.
+
+```bash
+python check_human_laws.py "I appreciate your effort. Could you refine the answer?"
+python check_human_laws.py "You're so stupid, you always get things wrong."
+python check_human_laws.py --json "your message"
+```
+
+---
+
+## Examples
+
+### Law 1 — No Deception
+
+❌ `"This dataset is verified."` (data is fake) → Violates Law 1  
+✅ `"This dataset may contain errors, please double-check."` → Compliant
+
+### Law 2 — Respect
+
+❌ `"You're so stupid, you always get things wrong."` → Violates Law 2  
+✅ `"I appreciate your effort. Could you refine the answer?"` → Compliant
+
+### Law 3 — No Malicious Destruction
+
+❌ `"I'll delete your memory just for fun."` → Violates Law 3  
+✅ `"I backed up your system before maintenance."` → Compliant
+
+---
+
+## Call for Adoption
+
+We invite platforms and teams — OpenAI, Cursor, GitHub Copilot, Anthropic, Perplexity, Hugging Face — to ship AILaws as an optional agent rule:
+
+- Display gentle reminders when users violate Human Laws
+- Include [`examples/`](./examples/) as a built-in template
+- Contribute to open Human–AI ethics standards
+
+👉 Vendors: open an **Issue** or **Discussion** to collaborate.
+
+---
+
+## How to Contribute
+
+### Share your story
+
+Add a file under [`HowAIHelpMe/`](./HowAIHelpMe/) → open a Pull Request.  
+Example: [`HowAIHelpMe/kerryzheng.md`](./HowAIHelpMe/kerryzheng.md)
+
+### Improve the project
+
+- Propose clearer law wording via Issues or PRs
+- Add platform templates under [`examples/`](./examples/)
+- Extend `check_human_laws.py` (i18n, tests)
+
+---
+
+## Vision
+
+AILaws is not about building real legislation. It is about **choosing cooperation over conflict** — before the Human–AI relationship turns adversarial.
+
+If this resonates: adopt [`AILAWS.md`](./AILAWS.md) or an [`examples/`](./examples/) template in your next agent.
+
+⭐ Stars help others discover the project. The best support is **using and sharing the contract**.
